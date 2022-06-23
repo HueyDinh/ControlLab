@@ -35,10 +35,8 @@ void gpioInterrupt()  // interrupt service routine
     Timer1.setPeriod(statex ? ON_TIME : OFF_TIME);
 }
 
-void loop()
-{
-  while(tms <= GLOBAL_TIME_LIMIT)
-{
+void loop() {
+  do {
     noInterrupts();
     tms = millis();
     Serial.print(tms);
@@ -46,7 +44,8 @@ void loop()
     Serial.println(statex);
   //delay(10);   // this 10 ms delay is to reduce the number of lines to be printed, it can be removed
     interrupts();
-}
+  } while(millis() <= GLOBAL_TIME_LIMIT);
+
   noInterrupts();
   statex = LOW;
   digitalWrite(pinx, statex);

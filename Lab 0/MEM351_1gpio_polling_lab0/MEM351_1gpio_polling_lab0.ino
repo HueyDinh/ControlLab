@@ -48,7 +48,7 @@ void setup() {
 
 void loop() {
     
-    while (tms < GLOBAL_TIME_LIMIT) {
+    do {
         tms = millis();
         Serial.print(tms);
         Serial.print("\t");
@@ -61,7 +61,7 @@ void loop() {
         }
         else {}
         Serial.println(statex);
-    }
+    } while (millis() < GLOBAL_TIME_LIMIT);
 
     statex = LOW;
     digitalWrite(pinx, statex);

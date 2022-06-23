@@ -1,6 +1,0 @@
-{
-    "sketch": "MEM351_1gpio_interrupt_lab0.ino",
-    "board": "arduino:avr:uno",
-    "port": "COM4",
-    "programmer": "arduino:avrispmkii"
-}
