@@ -1,4 +1,4 @@
-fileID = fopen('polling_data.txt','r');
+fileID = fopen('delay_data.txt','r');
 formatSpec = '%d %d';
 sizeA = [2 Inf];
 A = fscanf(fileID,formatSpec,sizeA);

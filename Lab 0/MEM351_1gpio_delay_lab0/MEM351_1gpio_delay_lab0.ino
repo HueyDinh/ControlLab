@@ -17,68 +17,70 @@
   modified 8 Sep 2016
   by Colby Newman
   modified by BC Chang on 6/20/2020
+  modified by Khac Hieu Dinh on 6/28/2022
 
   This example code is in the public domain.
 
   http://www.arduino.cc/en/Tutorial/Blink
 */
+const int pinx = 7; // const: we does not expect the pin number to change during the subroutine
+int statex = HIGH; // pin state initialized to HIGH because the blink cycle is defined to be high->low
+const int ON_TIME = 1000; // const: LED on duration does not change
+const int OFF_TIME = 500; // const: LED off duration does not change
+int globalCycleCounter = 0; // A global variable (persisting outside loop()) to keep track of the number of blink cycle completed
+const int GLOBAL_CYCLE_LIMIT = 10; // The number of cycle that will be run
+
 // Initialization
-
-const int pinx = 7;     
-int statex = HIGH;
-const int ON_TIME = 1000;
-const int OFF_TIME = 500;
-int globalCycleCounter = 0;
-const int GLOBAL_CYCLE_LIMIT = 10;
-unsigned long tms = 0;
-
 // the setup function runs once when you press reset or power the board
 
 void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
+  // initialize pinx (7) as an output.
   pinMode(pinx, OUTPUT);
+  // initialize the serial monitor with baud rate 9600
   Serial.begin(9600);
+  Serial.println("Starting Delay Sketch ...");
 }
 
-// the loop function runs over and over again until k=0.
-
+// the loop function runs repeatedly, but only the the first call will blink the LED. Subsequent call will do nothing (globalCycleCounter >= GLOBAL_CYCLE_LIMIT)
 void loop() 
 {
   while (globalCycleCounter < GLOBAL_CYCLE_LIMIT)
 {
-        tms = millis();
-        Serial.print(tms);
-        Serial.print("\t");         // prints a tab 
-        digitalWrite(pinx, statex); 
+        // 1 data point at the beginning of the on interval
+        Serial.print(millis());
+        Serial.print("\t"); 
         Serial.println(statex);
         delay(ON_TIME);
 
-        tms = millis();
-        Serial.print(tms);
-        Serial.print("\t");         // prints a tab 
-        digitalWrite(pinx, statex); 
+        // 1 data point at the end of the on interval
+        Serial.print(millis());
+        Serial.print("\t");
         Serial.println(statex);
         
+        // Invert the programmatic and physical state of pin x
         statex = !statex;
-
-        tms = millis();
-        Serial.print(tms);
-        Serial.print("\t");         // prints a tab 
         digitalWrite(pinx, statex); 
+
+        // 1 data point at the start of the off interval
+        Serial.print(millis());
+        Serial.print("\t");         // prints a tab 
         Serial.println(statex);
         delay(OFF_TIME);
 
-        tms = millis();
-        Serial.print(tms);
-        Serial.print("\t");         // prints a tab 
-        digitalWrite(pinx, statex); 
+        // 1 data point at the end of the off interval
+        Serial.print(millis());
+        Serial.print("\t");         // prints a tab
         Serial.println(statex);
 
+        // Invert the programmatic and physical state of pin x
         statex = !statex;
+        digitalWrite(pinx, statex);
 
+        // INcrement the cycle counter
         globalCycleCounter++;
       
 }
+// Cleanup: Turn off the LED
 statex=LOW;
 digitalWrite(pinx, statex);
 }
