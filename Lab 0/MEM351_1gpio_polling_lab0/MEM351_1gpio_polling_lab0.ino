@@ -46,8 +46,6 @@ void setup() {
   Serial.println("Starting Polling Sketch ...");
 }
 
-// the loop function runs over and over again until k=0.
-
 void loop() {
 
     if (Finished) { // Completion guard
