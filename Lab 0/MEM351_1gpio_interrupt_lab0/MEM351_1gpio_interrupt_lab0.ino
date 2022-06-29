@@ -46,7 +46,7 @@ void loop() {
     Serial.println(statex);
   //delay(10);   // this 10 ms delay is to reduce the number of lines to be printed, it can be removed
     interrupts();
-  } while(millis() <= GLOBAL_TIME_LIMIT);
+  } while(millis() < GLOBAL_TIME_LIMIT);
 
   noInterrupts();
   Finished = true;
