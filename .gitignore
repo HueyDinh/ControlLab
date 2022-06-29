@@ -1,5 +1,4 @@
 *.asv
 **/.vscode
-*.txt
 *.svg
 *.png
