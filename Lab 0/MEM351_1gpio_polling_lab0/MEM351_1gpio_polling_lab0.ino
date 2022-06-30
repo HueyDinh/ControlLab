@@ -42,6 +42,7 @@ bool Finished = false; // after the timer hit the time limit, this flag turns to
 void setup() {
   // initialize digital pin pinx as an output.
   pinMode(pinx, OUTPUT);
+  digitalWrite(pinx, statex);
   Serial.begin(115200);
   Serial.println("Starting Polling Sketch ...");
 }

@@ -36,6 +36,7 @@ const int GLOBAL_CYCLE_LIMIT = 10; // The number of cycle that will be run
 void setup() {
   // initialize pinx (7) as an output.
   pinMode(pinx, OUTPUT);
+  digitalWrite(pinx, statex);
   // initialize the serial monitor with baud rate 9600
   Serial.begin(9600);
   Serial.println("Starting Delay Sketch ...");

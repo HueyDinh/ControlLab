@@ -18,6 +18,7 @@ bool Finished = false; // Flag raise when 10 cycle is finished. Essentially disa
 void setup()
 {
   pinMode(pinx, OUTPUT);
+  digitalWrite(pinx, statex);
   Timer1.initialize(ON_TIME);   // in micro seconds
   Timer1.attachInterrupt(gpioInterrupt); // gpioInterrupt to interrupt every 1 second (initially, can be changed)
   Serial.begin(115200);
