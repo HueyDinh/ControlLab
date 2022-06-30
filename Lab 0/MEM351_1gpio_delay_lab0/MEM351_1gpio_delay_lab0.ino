@@ -81,6 +81,7 @@ void loop()
         globalCycleCounter++;
       
 }
+Serial.flush();
 // Cleanup: Turn off the LED
 statex=LOW;
 digitalWrite(pinx, statex);

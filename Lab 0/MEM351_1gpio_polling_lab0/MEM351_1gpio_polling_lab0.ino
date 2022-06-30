@@ -71,6 +71,7 @@ void loop() {
     Finished = true;
 
     // Clean-up
+    Serial.flush();
     statex = LOW;
     digitalWrite(pinx, statex);
 }

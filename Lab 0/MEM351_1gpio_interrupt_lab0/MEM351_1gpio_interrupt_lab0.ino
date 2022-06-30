@@ -41,15 +41,14 @@ void loop() {
   }
 
   do {
-    noInterrupts();
     Serial.print(millis());
     Serial.print("\t");         // prints a tab
     Serial.println(statex);
   //delay(10);   // this 10 ms delay is to reduce the number of lines to be printed, it can be removed
-    interrupts();
   } while(millis() < GLOBAL_TIME_LIMIT);
 
   noInterrupts();
+  Serial.flush();
   Finished = true;
   statex = LOW;
   digitalWrite(pinx, statex);
