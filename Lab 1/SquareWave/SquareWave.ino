@@ -5,7 +5,7 @@ const unsigned long baudRate = 115200;
 const int pinX = 7;
 const int pinA = A0;
 
-const double frequencyRad = 0.2*PI; // in Rad/s
+const double frequencyRad = 0.5*PI; // in Rad/s
 const double frequencyHz = frequencyRad/(2*PI); // in Hertz
 const unsigned long period = 1/frequencyHz*1e6; // in microseconds, nearest integer
 const unsigned long delayTime = period/2; // in microseconds, nearest integer

@@ -9,7 +9,7 @@ const int maxPseudoAnalogValue = 255;
 const float sineAmplitude = maxPseudoAnalogValue/2;
 const float sineBias = maxPseudoAnalogValue/2;
 
-const float frequencyRad = 10; // in Rad/s
+const float frequencyRad = 6; // in Rad/s
 const float frequencyHz = frequencyRad/(2*PI); // in Hertz
 const unsigned long period = 1/frequencyHz*1e3; // in microseconds
 const unsigned int delayTime = period/N; // sine profile spacing
