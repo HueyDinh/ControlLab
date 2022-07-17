@@ -1,6 +1,6 @@
 const unsigned long baudRate = 2000000;
 
-const int pinInAnalog = 5;
+const int pinInAnalog = 6;
 const int pinOutAnalog = A0;
 
 const int N = 100; // Number of elements in the discrete vector 
@@ -9,11 +9,11 @@ const int maxPseudoAnalogValue = 255;
 const float sineAmplitude = maxPseudoAnalogValue/2;
 const float sineBias = maxPseudoAnalogValue/2;
 
-const float frequencyRad = 6; // in Rad/s
+const float frequencyRad = 22; // in Rad/s
 const float frequencyHz = frequencyRad/(2*PI); // in Hertz
-const unsigned long period = 1/frequencyHz*1e3; // in microseconds
-const unsigned int delayTime = period/N; // sine profile spacing
-const unsigned int numCycle = 3;
+const unsigned long period = 1/frequencyHz*1e6; // in microseconds
+const unsigned int delayTime = period/N - 610; // sine profile spacing
+const unsigned int numCycle = 10;
 unsigned int index;
 int duty;
 
@@ -45,9 +45,10 @@ void loop() {
             Serial.print(analogRead(pinOutAnalog));
             Serial.print("\t");
             Serial.println(duty);
-            delay(delayTime);
+            delayMicroseconds(delayTime);
         }
     }
+    analogWrite(pinInAnalog,0);
     Serial.println("Finished!");
     Serial.flush();
     finished = true;
